@@ -24,5 +24,10 @@ namespace Blood_Glucose_Monitor
         {
             InitializeComponent();
         }
+
+        private void BtnQuery_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
