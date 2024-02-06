@@ -1,0 +1,15 @@
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\bin\Debug\Blood Glucose Monitor.exe.config
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\bin\Debug\Blood Glucose Monitor.exe
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\bin\Debug\Blood Glucose Monitor.pdb
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.csproj.AssemblyReference.cache
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\MainWindow.g.cs
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\App.g.cs
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor_MarkupCompile.cache
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor_MarkupCompile.lref
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\MainWindow.baml
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.g.resources
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood_Glucose_Monitor.Properties.Resources.resources
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.csproj.GenerateResource.cache
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.csproj.CoreCompileInputs.cache
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.exe
+C:\Users\smith567\Desktop\Cs Project\Blood Glucose Monitor\obj\Debug\Blood Glucose Monitor.pdb
