@@ -28,3 +28,9 @@ C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose
 C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor.csproj.CoreCompileInputs.cache
 C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor.exe
 C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor.pdb
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\x86\sqlite3.dll
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\x64\sqlite3.dll
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\System.Data.SQLite.dll
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\System.Data.SQLite.xml
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor_Content.g.cs
+C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor.csproj.CopyComplete

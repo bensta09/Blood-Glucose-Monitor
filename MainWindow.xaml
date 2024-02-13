@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" Background="#FF145729">
     <Grid>
         <Button x:Name="BtnQuery" Content="Button" HorizontalAlignment="Left" Margin="30,45,0,0" VerticalAlignment="Top" Width="75" Click="BtnQuery_Click"/>
-        <DataGrid HorizontalAlignment="Left" Height="346" Margin="194,45,0,0" VerticalAlignment="Top" Width="569"/>
+        <DataGrid x:Name="GGrid" HorizontalAlignment="Left" Height="346" Margin="194,45,0,0" VerticalAlignment="Top" Width="569"/>
         <Button x:Name="BtnSwag" Content="Swag" HorizontalAlignment="Left" Margin="30,90,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="BtnDrip" Content="Drip" HorizontalAlignment="Left" Margin="30,141,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="BtnRizz" Content="Rizz" HorizontalAlignment="Left" Margin="30,189,0,0" VerticalAlignment="Top" Width="75" Background="#FFFD1E1E"/>
