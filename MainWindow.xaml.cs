@@ -17,6 +17,7 @@ using System.Data.SQLite;
 using System.Data;
 using System.Windows.Forms.DataVisualization; //for graphing
 
+
 namespace Blood_Glucose_Monitor
 {
     /// <summary>
@@ -59,6 +60,7 @@ namespace Blood_Glucose_Monitor
                 dataAdapter.Fill(dt);
 
                 GGrid.ItemsSource = dt.DefaultView;
+                GGrid_Copy.ItemsSource = dt.DefaultView;
 
                 conn.Close();
             }
@@ -69,6 +71,45 @@ namespace Blood_Glucose_Monitor
         
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
+
+        private void Entry_Click(object sender, RoutedEventArgs e)
+        {
+            String entry = Glucose_Entry.Text;
+            DateTime currentDate = DateTime.Now;
+            String date = currentDate.ToString("yyyy-MM-dd");
+            String time = currentDate.ToString("t");
+           //MessageBox.Show(entry);
+
+            try
+            {
+                dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
+                SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};");
+                conn.Open();
+                string query = "Insert into records (Glucose, Date, Time) values (@entry, @date, @time)";//Glucose, Date, Time
+
+                using (SQLiteCommand command = new SQLiteCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@entry", entry);
+                    command.Parameters.AddWithValue("@date", date);
+                    command.Parameters.AddWithValue("@time", time);
+                    command.ExecuteNonQuery();
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured");
+            }
+
+            LoadDataBase();
+
+
+
+        }
     }
 }
