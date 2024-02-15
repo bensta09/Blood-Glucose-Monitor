@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Data.SQLite;
 using System.Data;
+using System.Windows.Forms.DataVisualization; //for graphing
 
 namespace Blood_Glucose_Monitor
 {
@@ -38,6 +39,12 @@ namespace Blood_Glucose_Monitor
             
         }
 
+        /*
+        private void InsertInto()
+        {
+            string insert = "Insert into records"
+        }
+        */
         private void LoadDataBase()
         {
             try
