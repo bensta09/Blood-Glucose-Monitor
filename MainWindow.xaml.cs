@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using System.Data.SQLite;
+using System.Data.SQLite; //for database
 using System.Data;
 using System.Windows.Forms.DataVisualization; //for graphing
 
@@ -32,7 +32,7 @@ namespace Blood_Glucose_Monitor
         public MainWindow()
         {
             InitializeComponent();
-            LoadDataBase();
+            LoadDataBase(); //Load database on application launch
         }
 
         private void BtnQuery_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace Blood_Glucose_Monitor
             string insert = "Insert into records"
         }
         */
-        private void LoadDataBase()
+        private void LoadDataBase() //Method to load database with error handling. Crashes without catch.
         {
             try
             {
@@ -71,12 +71,12 @@ namespace Blood_Glucose_Monitor
         
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) //Unused
         {
 
         }
 
-        private void Entry_Click(object sender, RoutedEventArgs e)
+        private void Entry_Click(object sender, RoutedEventArgs e) //Blood glucose logger
         {
             String entry = Glucose_Entry.Text;
             DateTime currentDate = DateTime.Now;
@@ -107,9 +107,6 @@ namespace Blood_Glucose_Monitor
             }
 
             LoadDataBase();
-
-
-
         }
     }
 }
