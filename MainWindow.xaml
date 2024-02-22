@@ -13,27 +13,35 @@
                 <Grid Background="#FFE5E5E5">
 
                     <Button x:Name="BtnQuery" Content="Button" HorizontalAlignment="Left" Margin="28,42,0,0" VerticalAlignment="Top" Width="95" Click="BtnQuery_Click" Height="31" d:IsHidden="True"/>
-                    <DataGrid x:Name="GGrid" HorizontalAlignment="Left" Height="529" Margin="28,243,0,0" VerticalAlignment="Top" Width="1243"/>
+                    <DataGrid x:Name="Chart_Grid" HorizontalAlignment="Left" Height="529" Margin="28,243,0,0" VerticalAlignment="Top" Width="1243"/>
                     <Button Content="Day" HorizontalAlignment="Left" Margin="28,140,0,0" VerticalAlignment="Top" Width="178" Height="45" FontSize="24" Background="#FF91BDBD"/>
                     <Button Content="Week" HorizontalAlignment="Left" Margin="242,140,0,0" VerticalAlignment="Top" Width="178" Height="45" FontSize="24" Background="#FF91BDBD"/>
                     <Button Content="Month" HorizontalAlignment="Left" Margin="455,140,0,0" VerticalAlignment="Top" Width="178" Height="45" FontSize="24" Background="#FF91BDBD"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="29,207,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="301,207,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
+                    <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="29,207,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
+                    <DatePicker x:Name="dateTo" HorizontalAlignment="Left" Margin="301,207,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
                     <Label Content="-" HorizontalAlignment="Left" Margin="257,173,0,0" VerticalAlignment="Top" FontSize="48" Width="31" Height="55"/>
                     <Label Content="Date Range" HorizontalAlignment="Left" Margin="21,79,0,0" VerticalAlignment="Top" FontSize="36"/>
                     <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                         <Label Content="Chart" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     </Grid>
+                    <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="681,192,0,0" Height="38" FontSize="16" Click="btnQuery_Click_1"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="log" Header="Log">
                 <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                     <Label Content="Log" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     <Grid Margin="0,0,2401,685"/>
-                    <Button x:Name="Btn_Entry_Click" Content="Button" Margin="96,159,1032,-97" Click="Entry_Click"/>
-                    <TextBox x:Name="Glucose_Entry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="349,159,0,-97" TextChanged="TextBox_TextChanged"/>
+                    <Button x:Name="Btn_Entry_Click" Content="Insert" Margin="487,200,641,-138" Click="Entry_Click"/>
+                    <TextBox x:Name="Glucose_Entry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="315,115,0,-53" TextChanged="TextBox_TextChanged"/>
                     <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="397,346,0,-287"/>
-                    <DataGrid x:Name="GGrid_Copy" HorizontalAlignment="Left" Height="529" Margin="28,243,0,-687" VerticalAlignment="Top" Width="1243"/>
+                    <DataGrid x:Name="Log_Grid" HorizontalAlignment="Left" Height="529" Margin="28,243,0,-687" VerticalAlignment="Top" Width="1243"/>
+                    <Label Content="Glucose" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="263,115,0,-56"/>
+                    <TextBox x:Name="Carbs_Entry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="315,146,0,-84"/>
+                    <TextBox x:Name="Insulin_Entry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="315,174,0,-112"/>
+                    <TextBox x:Name="Notes_Entry" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="315,203,0,-141"/>
+                    <Label Content="Carbs" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="263,143,0,-84"/>
+                    <Label Content="Insulin" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,169,0,-110"/>
+                    <Label Content="Notes" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,200,0,-141"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab2" Header="Search">
