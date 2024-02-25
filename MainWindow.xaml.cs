@@ -15,7 +15,8 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Data.SQLite; //for database
 using System.Data;
-using System.Windows.Forms.DataVisualization; //for graphing
+using DataVis = System.Windows.Forms.DataVisualization; //for graphing
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 
@@ -39,6 +40,7 @@ namespace Blood_Glucose_Monitor
         private string dbPath;
 
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace Blood_Glucose_Monitor
 
         private void BtnQuery_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         /*
@@ -56,7 +58,7 @@ namespace Blood_Glucose_Monitor
             string insert = "Insert into records"
         }
         */
-private void LoadDataBase() //Method to load database with error handling. Crashes without catch.
+        private void LoadDataBase() //Method to load database with error handling. Crashes without catch.
         {
             try
             {
@@ -78,7 +80,7 @@ private void LoadDataBase() //Method to load database with error handling. Crash
             {
                 MessageBox.Show("An error has occured");
             }
-        
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) //Unused
@@ -88,6 +90,7 @@ private void LoadDataBase() //Method to load database with error handling. Crash
 
         private void Entry_Click(object sender, RoutedEventArgs e) //Blood glucose logger
         {
+
             String glucoseEntry = Glucose_Entry.Text;
             String carbsEntry = Carbs_Entry.Text;
             String insulinEntry = Insulin_Entry.Text;
@@ -96,7 +99,12 @@ private void LoadDataBase() //Method to load database with error handling. Crash
             DateTime currentDate = DateTime.Now;
             String date = currentDate.ToString("yyyy-MM-dd");
             String time = currentDate.ToString("t");
-           //MessageBox.Show(entry);
+
+            if (cbCustomTime.IsChecked == true)
+            {
+                date = dpCustomDate.SelectedDate.Value.ToString("yyyy-MM-dd"); //Custom date will replace default date if CB is selected
+            }
+            //MessageBox.Show(entry);
 
             try
             {
@@ -155,9 +163,41 @@ private void LoadDataBase() //Method to load database with error handling. Crash
                 conn.Close();
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show("An error has occured");
             }
         }
+
+
+        private void Reset_Log(object sender, RoutedEventArgs e)
+        {
+            Glucose_Entry.Clear();
+            Carbs_Entry.Clear();
+            Insulin_Entry.Clear();
+            Notes_Entry.Clear();
+            cbCustomTime.IsChecked = false; //Uncheck checkbox to toggle custom time entry
+        }
+
+        private void cbCustomTime_Checked(object sender, RoutedEventArgs e)
+        {
+            labelEnterDate.Visibility = Visibility.Visible;
+            labelEnterTime.Visibility = Visibility.Visible;
+            dpCustomDate.Visibility = Visibility.Visible;
+            grpCustom.Visibility = Visibility.Visible;
+        }
+
+        private void cbCustomTime_Unchecked(object sender, RoutedEventArgs e)
+        {
+            labelEnterDate.Visibility = Visibility.Hidden;
+            labelEnterTime.Visibility = Visibility.Hidden;
+            dpCustomDate.Visibility = Visibility.Hidden;
+            grpCustom.Visibility = Visibility.Hidden;
+        }
+
+        private void btnDisplayChart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
-}
+ }
+

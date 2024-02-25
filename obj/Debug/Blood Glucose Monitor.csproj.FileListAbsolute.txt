@@ -57,3 +57,5 @@ C:\Users\Benjamin\Desktop\Blood_Glucose_Monitor\Blood-Glucose-Monitor\obj\Debug\
 C:\Users\Benjamin\Desktop\Blood_Glucose_Monitor\Blood-Glucose-Monitor\obj\Debug\Blood Glucose Monitor.pdb
 C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\LiveCharts.dll
 C:\Users\smith567\Documents\GitHub\Blood-Glucose-Monitor\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Benjamin\Desktop\Blood_Glucose_Monitor\Blood-Glucose-Monitor\bin\Debug\LiveCharts.dll
+C:\Users\Benjamin\Desktop\Blood_Glucose_Monitor\Blood-Glucose-Monitor\bin\Debug\LiveCharts.Wpf.dll
