@@ -9,35 +9,58 @@
         Title="MainWindow" Height="857.975" Width="1312.822" Background="#FF145729">
     <Grid Background="#FF405252">
         <TabControl HorizontalAlignment="Left" Height="828" VerticalAlignment="Top" Width="1306">
-            <TabItem x:Name="tableTab" Header="Chart">
+            <TabItem x:Name="Home_tab" Header="Home" FontSize="14">
+                <Grid Background="#FFE5E5E5">
+                    <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
+                        <Label Content="Home" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
+                    </Grid>
+                    <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="134,303,0,0"/>
+                    <Label Content="First name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,153,0,0"/>
+                    <Label Content="Last name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,198,0,0"/>
+                    <Label Content="Birth date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,244,0,0"/>
+                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="168,247,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="161,157,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="161,204,0,0"/>
+                    <GroupBox Header="Current Information" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="366" Margin="857,137,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Chart_tab" Header="Chart" FontSize="14">
                 <Grid Background="#FFE5E5E5">
 
                     <Button x:Name="BtnQuery" Content="Button" HorizontalAlignment="Left" Margin="28,42,0,0" VerticalAlignment="Top" Width="95" Click="BtnQuery_Click" Height="31" d:IsHidden="True"/>
-                    <DataGrid x:Name="Chart_Grid" HorizontalAlignment="Left" Height="317" Margin="29,261,0,0" VerticalAlignment="Top" Width="394"/>
-                    <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="29,151,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
-                    <DatePicker x:Name="dateTo" HorizontalAlignment="Left" Margin="301,151,0,0" VerticalAlignment="Top" Height="23" Width="212"/>
-                    <Label Content="-" HorizontalAlignment="Left" Margin="257,117,0,0" VerticalAlignment="Top" FontSize="48" Width="31" Height="55"/>
+                    <DataGrid x:Name="Chart_Grid" HorizontalAlignment="Left" Height="331" Margin="68,317,0,0" VerticalAlignment="Top" Width="445"/>
+                    <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="68,152,0,0" VerticalAlignment="Top" Height="23" Width="122"/>
+                    <DatePicker x:Name="dateTo" HorizontalAlignment="Left" Margin="68,188,0,0" VerticalAlignment="Top" Height="23" Width="122"/>
                     <Label Content="Date Range" HorizontalAlignment="Left" Margin="21,79,0,0" VerticalAlignment="Top" FontSize="36"/>
                     <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                         <Label Content="Chart" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     </Grid>
-                    <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="141,218,0,0" Height="38" FontSize="16" Click="btnQuery_Click_1"/>
-                    <Grid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="546" Margin="554,261,0,0">
-                        <WindowsFormsHost>
+                    <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="59,252,0,0" Height="38" FontSize="16" Click="btnQuery_Click_1"/>
+                    <Grid HorizontalAlignment="Left" Height="331" VerticalAlignment="Top" Width="592" Margin="632,317,0,0">
+                        <WindowsFormsHost Margin="2,0,-2,0">
                             <wf:Chart x:Name="Chart1">
                                 <wf:Chart.Series>
                                     <wf:Series ChartType="Line"/>
                                 </wf:Chart.Series>
+                                <wf:Chart.ChartAreas>
+                                    <wf:ChartArea/>
+                                </wf:Chart.ChartAreas>
                             </wf:Chart>
                         </WindowsFormsHost>
                     </Grid>
-                    <RadioButton x:Name="radioDay" Content="Day" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,192,0,0" ClickMode="Press" FontSize="16"/>
-                    <RadioButton x:Name="radioWeek" Content="Week" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="193,192,0,0" FontSize="16"/>
-                    <RadioButton x:Name="radioMonth" Content="Month" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="357,192,0,0" FontSize="16"/>
-                    <Button x:Name="btnDisplayChart" Content="make chart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="632,218,0,0" Click="btnDisplayChart_Click"/>
+                    <Button x:Name="btnDisplayChart" Content="Generate Graph" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="645,252,0,0" Click="btnDisplayChart_Click" Height="38" FontSize="16"/>
+                    <GroupBox Header="View by" HorizontalAlignment="Left" Height="153" VerticalAlignment="Top" Width="97" Margin="216,137,0,0" BorderBrush="#FF5D7A7A">
+                        <Canvas>
+                            <RadioButton x:Name="radioDay" Content="Day" HorizontalAlignment="Left" VerticalAlignment="Top" ClickMode="Press" FontSize="16" Canvas.Left="10" Canvas.Top="52"/>
+                            <RadioButton x:Name="radioWeek" Content="Week" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="10" Canvas.Top="10"/>
+                            <RadioButton x:Name="radioMonth" Content="Month" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="10" Canvas.Top="95"/>
+                        </Canvas>
+                    </GroupBox>
+                    <Label Content="From:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,152,0,0" Width="47"/>
+                    <Label Content="To:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,188,0,0" Width="40"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="log" Header="Log">
+            <TabItem x:Name="Log_tab" Header="Log" FontSize="14">
                 <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                     <GroupBox x:Name="grpCustom" Header="Custom Time" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top" Width="262" Margin="358,173,0,-266"/>
                     <GroupBox Header="Log Entry" HorizontalAlignment="Left" Height="347" VerticalAlignment="Top" Width="315" Margin="28,103,0,-365" BorderBrush="#FF5A9CC3"/>
@@ -63,14 +86,13 @@
                     <CheckBox x:Name="cbCustomTime" Content="Custom time" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="358,140,0,-68" Checked="cbCustomTime_Checked" Unchecked="cbCustomTime_Unchecked"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tab2" Header="Search">
+            <TabItem x:Name="Settings_tab" Header="Search" FontSize="14">
                 <Grid Background="#FFE5E5E5">
                     <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                         <Label Content="Search" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     </Grid>
                 </Grid>
             </TabItem>
-            <CheckBox Content="CheckBox" Height="100" Width="100"/>
         </TabControl>
     </Grid>
 </Window>

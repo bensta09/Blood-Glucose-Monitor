@@ -196,6 +196,44 @@ namespace Blood_Glucose_Monitor
 
         private void btnDisplayChart_Click(object sender, RoutedEventArgs e)
         {
+            var dateFr = dateFrom.SelectedDate;
+            var dateT = dateTo.SelectedDate;
+
+            try
+            {
+                dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
+                SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};");
+                conn.Open();
+                string query = "select Glucose, Date, Time from records where Date between @dateFr and @dateT";
+
+                using (SQLiteCommand command = new SQLiteCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@dateFr", dateFr.Value.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@dateT", dateT.Value.ToString("yyyy-MM-dd"));
+
+                    SQLiteDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int glucose = reader.GetInt32(0); // Index 0 is Glucose
+                        string date = reader.GetString(1); // Index 1 is Date
+                        string time = reader.GetString(2); // Index 2 is Time
+
+                        // Combine date and time if necessary
+                        DateTime dateTime = DateTime.Parse(date + " " + time);
+
+                        // Add the data point to the chart series
+                        Chart1.Series[0].Points.Add(glucose).AxisLabel = dateTime.ToString("yyyy-MM-dd HH:mm");
+                    }
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occurred");
+            }
+            //Chart1.Series[0].Points.Add(3).AxisLabel = "Test";
 
         }
     }
