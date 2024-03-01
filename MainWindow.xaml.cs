@@ -37,7 +37,7 @@ namespace Blood_Glucose_Monitor
     public partial class MainWindow : Window
     {
 
-        private string dbPath;
+        private string dbPath; // Path to the SQLite database
 
 
 
@@ -45,6 +45,7 @@ namespace Blood_Glucose_Monitor
         {
             InitializeComponent();
             LoadDataBase(); //Load database on application launch
+            LoadComboBoxes(); // Load ComboBoxes with default values
         }
 
         private void BtnQuery_Click(object sender, RoutedEventArgs e)
@@ -58,22 +59,47 @@ namespace Blood_Glucose_Monitor
             string insert = "Insert into records"
         }
         */
+
+        // Method to load ComboBoxes with default values
+        private void LoadComboBoxes()
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                hoursComboBox.Items.Add(i.ToString("00"));
+            }
+
+            // Populate minutes 
+            for (int i = 0; i < 60; i++)
+            {
+                minutesComboBox.Items.Add(i.ToString("00"));
+            }
+
+            // Set default selection
+            hoursComboBox.SelectedIndex = 0;
+            minutesComboBox.SelectedIndex = 0;
+        }
+
+
         private void LoadDataBase() //Method to load database with error handling. Crashes without catch.
         {
             try
             {
+                // Open connection to SQLite database
                 dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
                 SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};");
                 conn.Open();
+
+                // Query to select all records from the database
                 string query = "Select * from records";
                 SQLiteCommand cmd = new SQLiteCommand(query, conn);
                 SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dataAdapter.Fill(dt);
 
-                //Chart_Grid.ItemsSource = dt.DefaultView;
+                //Display records in Log_Grid
                 Log_Grid.ItemsSource = dt.DefaultView;
 
+                // Close database connection
                 conn.Close();
             }
             catch (Exception ex)
@@ -83,9 +109,9 @@ namespace Blood_Glucose_Monitor
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) //Unused
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) 
         {
-
+            //to be implemented
         }
 
         private void Entry_Click(object sender, RoutedEventArgs e) //Blood glucose logger
@@ -102,9 +128,14 @@ namespace Blood_Glucose_Monitor
 
             if (cbCustomTime.IsChecked == true)
             {
-                date = dpCustomDate.SelectedDate.Value.ToString("yyyy-MM-dd"); //Custom date will replace default date if CB is selected
+                date = dpCustomDate.SelectedDate.Value.ToString("yyyy-MM-dd"); //Custom date and time will be inserted if check box is selected
+                
+                string hour = hoursComboBox.SelectedItem.ToString();
+                string minute = minutesComboBox.SelectedItem.ToString();
+                string timePeriod = ((ComboBoxItem)timePeriodComboBox.SelectedItem).Content.ToString();
+                string customTime = $"{hour}:{minute} {timePeriod}";
+                time = customTime; //Working on removing leading 0
             }
-            //MessageBox.Show(entry);
 
             try
             {
@@ -123,7 +154,6 @@ namespace Blood_Glucose_Monitor
                     command.Parameters.AddWithValue("@time", time);
                     command.ExecuteNonQuery();
                 }
-
                 conn.Close();
             }
             catch (Exception ex)
@@ -134,7 +164,7 @@ namespace Blood_Glucose_Monitor
             LoadDataBase();
         }
 
-        private void btnQuery_Click_1(object sender, RoutedEventArgs e)
+        private void BtnQuery_Click_1(object sender, RoutedEventArgs e)
         {
             var dateFr = dateFrom.SelectedDate;
             var dateT = dateTo.SelectedDate;
@@ -146,8 +176,9 @@ namespace Blood_Glucose_Monitor
                 dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
                 SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};");
                 conn.Open();
-                string query = "select * from records where Date between @dateFr and @dateT";//Glucose, Date, Time
+                string query = "select * from records where Date between @dateFr and @dateT";
 
+                // Execute the SQL quary and populate the data into a data table for display
                 using (SQLiteCommand command = new SQLiteCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@dateFr", dateFr.Value.ToString("yyyy-MM-dd"));
@@ -157,6 +188,8 @@ namespace Blood_Glucose_Monitor
                     SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(command);
                     DataTable dt = new DataTable();
                     dataAdapter.Fill(dt);
+
+                    // Bind the DataTable to the data grid for displaying the queried records
                     Chart_Grid.ItemsSource = dt.DefaultView;
                 }
 
@@ -168,7 +201,7 @@ namespace Blood_Glucose_Monitor
             }
         }
 
-
+        // Method to reset log fields
         private void Reset_Log(object sender, RoutedEventArgs e)
         {
             Glucose_Entry.Clear();
@@ -178,22 +211,25 @@ namespace Blood_Glucose_Monitor
             cbCustomTime.IsChecked = false; //Uncheck checkbox to toggle custom time entry
         }
 
+        // Method to handle custom time checkbox checked event
         private void cbCustomTime_Checked(object sender, RoutedEventArgs e)
         {
             labelEnterDate.Visibility = Visibility.Visible;
             labelEnterTime.Visibility = Visibility.Visible;
             dpCustomDate.Visibility = Visibility.Visible;
-            grpCustom.Visibility = Visibility.Visible;
+            groupBoxCustomTime.Visibility = Visibility.Visible;
         }
 
+        // Method to handle custom time checkbox unchecked event
         private void cbCustomTime_Unchecked(object sender, RoutedEventArgs e)
         {
             labelEnterDate.Visibility = Visibility.Hidden;
             labelEnterTime.Visibility = Visibility.Hidden;
             dpCustomDate.Visibility = Visibility.Hidden;
-            grpCustom.Visibility = Visibility.Hidden;
+            groupBoxCustomTime.Visibility = Visibility.Hidden;
         }
 
+        // Method to display chart when button is clicked
         private void btnDisplayChart_Click(object sender, RoutedEventArgs e)
         {
             var dateFr = dateFrom.SelectedDate;
@@ -201,11 +237,13 @@ namespace Blood_Glucose_Monitor
 
             try
             {
+                // Connect to the database and retrieve glucose data within the selected date range
                 dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
                 SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};");
                 conn.Open();
                 string query = "select Glucose, Date, Time from records where Date between @dateFr and @dateT";
 
+                // Execute the SQL query to fetch glucose data
                 using (SQLiteCommand command = new SQLiteCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@dateFr", dateFr.Value.ToString("yyyy-MM-dd"));
@@ -219,7 +257,7 @@ namespace Blood_Glucose_Monitor
                         string date = reader.GetString(1); // Index 1 is Date
                         string time = reader.GetString(2); // Index 2 is Time
 
-                        // Combine date and time if necessary
+                        // Combine date and time
                         DateTime dateTime = DateTime.Parse(date + " " + time);
 
                         // Add the data point to the chart series
@@ -231,10 +269,9 @@ namespace Blood_Glucose_Monitor
             }
             catch (Exception ex)
             {
+                // Display error message if an exception occurs during data retrieval
                 MessageBox.Show("An error has occurred");
             }
-            //Chart1.Series[0].Points.Add(3).AxisLabel = "Test";
-
         }
     }
  }
