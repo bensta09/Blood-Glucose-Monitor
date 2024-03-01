@@ -117,7 +117,7 @@ namespace Blood_Glucose_Monitor
         private void Entry_Click(object sender, RoutedEventArgs e) //Blood glucose logger
         {
 
-            String glucoseEntry = Glucose_Entry.Text;
+            String glucoseEntry = Glucose_Entry.Text; //Extract text from UI for insertion to database
             String carbsEntry = Carbs_Entry.Text;
             String insulinEntry = Insulin_Entry.Text;
             String notesEntry = Notes_Entry.Text;

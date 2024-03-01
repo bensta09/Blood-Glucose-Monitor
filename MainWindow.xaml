@@ -18,10 +18,12 @@
                     <Label Content="First name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,153,0,0"/>
                     <Label Content="Last name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,198,0,0"/>
                     <Label Content="Birth date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,244,0,0"/>
-                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="168,247,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="161,157,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="161,204,0,0"/>
-                    <GroupBox Header="Current Information" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="366" Margin="857,137,0,0"/>
+                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,247,0,0" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,157,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,204,0,0"/>
+                    <GroupBox Header="Current Information" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="366" Margin="857,137,0,0" BorderBrush="Black" FontSize="20"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="188" Margin="161,106,0,0"/>
+                    <Label Content="Select profile:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,106,0,0" Width="99"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Chart_tab" Header="Chart" FontSize="14">
