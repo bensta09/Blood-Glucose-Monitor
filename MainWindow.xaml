@@ -17,7 +17,7 @@
                     <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="134,303,0,0"/>
                     <Label Content="First name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,153,0,0"/>
                     <Label Content="Last name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,198,0,0"/>
-                    <Label Content="Birth date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,244,0,0"/>
+                    <Label Content="Birthdate:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,244,0,0"/>
                     <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,247,0,0" Width="120"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,157,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,204,0,0"/>
