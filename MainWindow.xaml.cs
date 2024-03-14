@@ -17,6 +17,10 @@ using System.Data.SQLite; //for database
 using System.Data;
 using DataVis = System.Windows.Forms.DataVisualization; //for graphing
 using System.Windows.Forms.DataVisualization.Charting;
+using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.Defaults;
+
 
 
 
@@ -38,6 +42,7 @@ namespace Blood_Glucose_Monitor
     {
 
         private string dbPath; // Path to the SQLite database
+        private LiveCharts.SeriesCollection SeriesCollection;
 
 
 
@@ -230,7 +235,7 @@ namespace Blood_Glucose_Monitor
         }
 
         // Method to display chart when button is clicked
-        private void btnDisplayChart_Click(object sender, RoutedEventArgs e)
+   /*     private void btnDisplayChart_Click(object sender, RoutedEventArgs e)
         {
             var dateFr = dateFrom.SelectedDate;
             var dateT = dateTo.SelectedDate;
@@ -270,6 +275,90 @@ namespace Blood_Glucose_Monitor
             catch (Exception ex)
             {
                 // Display error message if an exception occurs during data retrieval
+                MessageBox.Show("An error has occurred");
+            }
+        }*/
+
+        private void btnLineChart_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DateTime fromDate = dateFrom.SelectedDate ?? DateTime.MinValue;
+                DateTime toDate = dateTo.SelectedDate ?? DateTime.MaxValue;
+
+                // Open connection to SQLite database
+                string dbPath = Directory.GetCurrentDirectory() + "\\glucose_database.db";
+                using (SQLiteConnection conn = new SQLiteConnection($"Data Source={dbPath};"))
+                {
+                    conn.Open();
+
+                    // Query to select glucose values, dates, and times within the selected date range
+                    string query = "SELECT Glucose, Date FROM records WHERE Date BETWEEN @fromDate AND @toDate";
+                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fromDate", fromDate.ToString("yyyy-MM-dd"));
+                        cmd.Parameters.AddWithValue("@toDate", toDate.ToString("yyyy-MM-dd"));
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Create lists to store glucose values and corresponding months
+                            List<double> glucoseValues = new List<double>();
+                            List<string> months = new List<string>();
+
+                            // Iterate through the query results
+                            while (reader.Read())
+                            {
+                                // Extract glucose value
+                                double glucose = Convert.ToDouble(reader["Glucose"]);
+                                glucoseValues.Add(glucose);
+
+                                // Extract date and convert it to month
+                                DateTime date = Convert.ToDateTime(reader["Date"]);
+                                string month = date.ToString("MMM");
+                                months.Add(month);
+                            }
+
+                            // Close the reader
+                            reader.Close();
+
+                            // Close database connection
+                            conn.Close();
+
+                            // Create a series collection for the chart
+                            SeriesCollection = new LiveCharts.SeriesCollection();
+
+                            // Create a chart values collection for blood glucose values
+                            ChartValues<ObservablePoint> glucosePoints = new ChartValues<ObservablePoint>();
+
+                            // Populate the chart values collection with blood glucose values and corresponding months
+                            for (int i = 0; i < glucoseValues.Count; i++)
+                            {
+                                glucosePoints.Add(new ObservablePoint(i, glucoseValues[i]));
+                            }
+
+                            // Add blood glucose values series to the series collection
+                            SeriesCollection.Add(new LineSeries
+                            {
+                                Title = "Glucose Values",
+                                Values = glucosePoints
+                            });
+
+                            // Set the series collection to the chart
+                            lineChart.Series = SeriesCollection;
+
+                            // Set x-axis labels to display months
+                            lineChart.AxisX.Clear();
+                            lineChart.AxisX.Add(new LiveCharts.Wpf.Axis
+                            {
+                                Title = "Moonth",
+                                Labels = months.ToArray(),
+                                Separator = new LiveCharts.Wpf.Separator { Step = 1 } // Ensures each label is shown
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("An error has occurred");
             }
         }

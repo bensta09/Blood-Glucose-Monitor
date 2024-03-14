@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blood_Glucose_Monitor"
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="857.975" Width="1312.822" Background="#FF145729">
     <Grid Background="#FF405252">
@@ -14,52 +15,57 @@
                     <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                         <Label Content="Home" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     </Grid>
-                    <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="134,303,0,0"/>
-                    <Label Content="First name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,153,0,0"/>
-                    <Label Content="Last name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,198,0,0"/>
-                    <Label Content="Birthdate:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="72,244,0,0"/>
-                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,247,0,0" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,157,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="161,204,0,0"/>
-                    <GroupBox Header="Current Information" HorizontalAlignment="Left" Height="364" VerticalAlignment="Top" Width="366" Margin="857,137,0,0" BorderBrush="Black" FontSize="20"/>
+                    <Button Content="Load profile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Margin="380,106,0,0" Height="25"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="188" Margin="161,106,0,0"/>
                     <Label Content="Select profile:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,106,0,0" Width="99"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="606" Margin="822,134,0,0" Stroke="#FF5D7A7A" VerticalAlignment="Top" Width="412"/>
+                    <Label Content="Name:" HorizontalAlignment="Left" Margin="856,176,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Label Content="Profile:" HorizontalAlignment="Left" Margin="856,225,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                    <Button Content="Create profile" HorizontalAlignment="Left" Margin="520,106,0,0" VerticalAlignment="Top" Width="108" Height="25"/>
+                    <GroupBox Header="New Profile" HorizontalAlignment="Left" Height="213" Margin="44,160,0,0" VerticalAlignment="Top" Width="260" BorderBrush="#FF5D7A7A">
+                        <Canvas>
+                            <Label Content="First name:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="13" Canvas.Top="13"/>
+                            <Label Content="Last name:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="19" Canvas.Top="58"/>
+                            <Label Content="Birthdate:" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="19" Canvas.Top="104"/>
+                            <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Canvas.Left="108" Canvas.Top="107"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="108" Canvas.Top="17"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Canvas.Left="108" Canvas.Top="64"/>
+                            <Button Content="Create" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Canvas.Left="73" Canvas.Top="154"/>
+
+                        </Canvas>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Chart_tab" Header="Chart" FontSize="14">
                 <Grid Background="#FFE5E5E5">
 
                     <Button x:Name="BtnQuery" Content="Button" HorizontalAlignment="Left" Margin="28,42,0,0" VerticalAlignment="Top" Width="95" Click="BtnQuery_Click" Height="31" d:IsHidden="True"/>
-                    <DataGrid x:Name="Chart_Grid" HorizontalAlignment="Left" Height="331" Margin="28,317,0,0" VerticalAlignment="Top" Width="556"/>
-                    <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="68,152,0,0" VerticalAlignment="Top" Height="23" Width="122"/>
-                    <DatePicker x:Name="dateTo" HorizontalAlignment="Left" Margin="68,188,0,0" VerticalAlignment="Top" Height="23" Width="122"/>
-                    <Label Content="Date Range" HorizontalAlignment="Left" Margin="21,79,0,0" VerticalAlignment="Top" FontSize="36"/>
+                    <DataGrid x:Name="Chart_Grid" HorizontalAlignment="Left" Height="160" Margin="647,116,0,0" VerticalAlignment="Top" Width="593"/>
+                    <DatePicker x:Name="dateFrom" HorizontalAlignment="Left" Margin="85,116,0,0" VerticalAlignment="Top" Height="31" Width="172"/>
+                    <DatePicker x:Name="dateTo" HorizontalAlignment="Left" Margin="85,156,0,0" VerticalAlignment="Top" Height="28" Width="172" FontSize="14"/>
                     <Grid Margin="0,0,-1,715" Background="#FF5D7A7A">
                         <Label Content="Chart" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" FontSize="48"/>
                     </Grid>
-                    <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="59,252,0,0" Height="38" FontSize="16" Click="BtnQuery_Click_1"/>
-                    <Grid HorizontalAlignment="Left" Height="331" VerticalAlignment="Top" Width="592" Margin="632,317,0,0">
-                        <WindowsFormsHost Margin="2,0,-2,0">
-                            <wf:Chart x:Name="Chart1">
-                                <wf:Chart.Series>
-                                    <wf:Series ChartType="Line"/>
-                                </wf:Chart.Series>
-                                <wf:Chart.ChartAreas>
-                                    <wf:ChartArea/>
-                                </wf:Chart.ChartAreas>
-                            </wf:Chart>
-                        </WindowsFormsHost>
+                    <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="470,116,0,0" Height="23" FontSize="14" Click="BtnQuery_Click_1"/>
+                    <Label Content="From:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,116,0,0" Width="57" FontSize="16" FontWeight="Bold"/>
+                    <Label Content="To:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,153,0,0" Width="40" FontSize="16" FontWeight="Bold"/>
+                    <Grid HorizontalAlignment="Left" Height="329" Margin="59,458,0,0" VerticalAlignment="Top" Width="1181">
+                        <lvc:CartesianChart x:Name="lineChart">
+
+                        </lvc:CartesianChart>
                     </Grid>
-                    <Button x:Name="btnDisplayChart" Content="Generate Graph" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="645,252,0,0" Click="btnDisplayChart_Click" Height="38" FontSize="16"/>
-                    <GroupBox Header="View by" HorizontalAlignment="Left" Height="153" VerticalAlignment="Top" Width="97" Margin="216,137,0,0" BorderBrush="#FF5D7A7A">
-                        <Canvas>
-                            <RadioButton x:Name="radioDay" Content="Day" HorizontalAlignment="Left" VerticalAlignment="Top" ClickMode="Press" FontSize="16" Canvas.Left="10" Canvas.Top="52"/>
-                            <RadioButton x:Name="radioWeek" Content="Week" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="10" Canvas.Top="10"/>
-                            <RadioButton x:Name="radioMonth" Content="Month" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Canvas.Left="10" Canvas.Top="95"/>
-                        </Canvas>
-                    </GroupBox>
-                    <Label Content="From:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,152,0,0" Width="47"/>
-                    <Label Content="To:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,188,0,0" Width="40"/>
+                    <Button x:Name="btnLineChart" Content="Generate chart" HorizontalAlignment="Left" Margin="85,415,0,0" VerticalAlignment="Top" Width="131" Click="btnLineChart_Click"/>
+                    <Button Content="Export data" HorizontalAlignment="Left" Margin="261,415,0,0" VerticalAlignment="Top" Width="131"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="85,452,0,0" Stroke="#FF5D7A7A" VerticalAlignment="Top" Width="1141" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Log_tab" Header="Log" FontSize="14">
